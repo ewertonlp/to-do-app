@@ -17,8 +17,7 @@ function createAccount() {
     if (nome === '') {
 
         // Mostrar menagem de erro (Nome)
-        mensagemErro.innerHTML += "<font color='red'> <br> <p>Preencha todos os campos <br></p> </font>"
-        mensagemErro.innerHTML += "<label><strong>Nome:</strong> Insira um nome válido<br></label>"
+        mensagemErro.innerHTML = "<label><font color='red'><strong>Nome:</strong></font> Insira um nome válido<br></label>"
 
     }
 
@@ -28,8 +27,7 @@ function createAccount() {
     if (sobrenome === '') {
 
         // Mostrar menagem de erro (Sobrenome)
-        mensagemErro.innerHTML += "<font color='red'> <br> <p>Preencha todos os campos <br></p> </font>"
-        mensagemErro.innerHTML += '<label><strong>Sobrenome:</strong> Insira um sobrenome válido <br></label>'
+        mensagemErro.innerHTML += "<label><font color='red'><strong> Sobrenome:</strong></font> Insira um nome válido<br></label>"
     }
 
 
@@ -37,10 +35,11 @@ function createAccount() {
     // TODO: Fazer o .toLoweCase para validação do e-mail
     const email = getEBI('inputEmailCadastro').value
 
-    // Mostrar menagem de erro (E-mail)
     if (/\S+@\S+\.\S+/.test(email) === false || email === ' ' || email === null || email === undefined) {
-        mensagemErro.innerHTML += "<font color='red'> <br> <p>Preencha todos os campos <br></p> </font>"
-        mensagemErro.innerHTML += "<label><strong>E-mail:</strong> Insira um e-mail válido! <br> <em>Exemplo: algumtexto@algumtexto.com</em> <br></label>"
+
+        // Mostrar menagem de erro (E-mail)
+        mensagemErro.innerHTML += "<label><font color='red'><strong> E-mail:</strong></font> Insira um e-mail válido! <br> <em>Exemplo: algumtexto@algumtexto.com</em> <br></label>"
+
     }
 
 
@@ -49,8 +48,8 @@ function createAccount() {
     if (password.length < 8 || password.length > 12 || password === "") {
 
         // Mostrar menagem de erro (Senha)
-        mensagemErro.innerHTML += "<font color='red'> <br> <p>Preencha todos os campos <br></p> </font>"
-        mensagemErro.innerHTML += "<label> <strong>Senha:</strong>Senha: A senha deve conter entre 8 e 12 caracteres!</label>"
+        mensagemErro.innerHTML += "<label><font color='red'><strong> Senha:</strong></font> A senha deve conter entre 8 e 12 caracteres! <br></label>"
+
     }
 
     // Verificação de Confirmação de Senha
@@ -58,8 +57,8 @@ function createAccount() {
     if (passwordConfirmation != password) {
 
         // Mostrar menagem de erro (Confirmação de Senha)
-        mensagemErro.innerHTML += "<font color='red'> <br> <p>Preencha todos os campos <br></p> </font>"
-        mensagemErro.innerHTML += "<label> <strong>Confirmação de senha:</strong>Senhas não conferem!</label>"
+        mensagemErro.innerHTML += "<label><font color='red'><strong> Confirmação de senha::</strong></font> As senhas precisam ser iguais <br></label>"
+
 
     } else {
         // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;

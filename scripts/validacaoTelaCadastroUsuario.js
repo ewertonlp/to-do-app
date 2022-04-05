@@ -12,6 +12,8 @@ botaoCriarConta.addEventListener('click', evento => {
 
     evento.preventDefault();
 
+    mensagemErro.innerHTML += " ";
+
     //Verifica se todos os campos estão preenchidos
     if (nome.value != "" && sobrenome.value != "" && email.value != "" && senha.value != "" &&
         repetirSenha.value != "") {
@@ -56,11 +58,6 @@ botaoCriarConta.addEventListener('click', evento => {
 
 
 });
-
-
-
-
-
 
 /*  Ao obter o sucesso, recebe o json (token) do usuário*/
 function cadastroSucesso(nomeUsuario, sobrenomeUsuario, emailUsuario, jsonRecebido) {
