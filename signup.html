@@ -25,27 +25,27 @@
 
       <label>
         Nome:
-        <input type="text" id="name" required="required">
+        <input type="text" id="inputNomeCadastro" required="required">
 
       </label>
       <label>
-        Apelido:
-        <input type="text" id="nickname">
+        Sobrenome:
+        <input type="text" id="inputSobrenomeCadastro">
       </label>
       <label>
         Email:
-        <input type="text" id="email" required="required">
+        <input type="text" id="inputEmailCadastro" required="required">
       </label>
       <label>
         Senha:
-        <input type="password" id="password" required="required">
+        <input type="password" id="inputSenhaCadastro" required="required">
       </label>
       <label>
         Repetir senha:
-        <input type="password" id="password-confirmation" required="required">
+        <input type="password" id="inputRepetirSenhaCadastro" required="required">
       </label>
 
-      <button type="button" onclick="createAccount()">Criar conta</button>
+      <button id="botaoCriarContaCadastro" type="button" onclick="createAccount()">Criar conta</button>
 
     </form>
     <div class="ingressar">
@@ -53,7 +53,9 @@
     </div>
 
     <!-- ---------------------- lógica aplicada no registro -------------------- -->
-    <script src="scripts/cadastro.js"></script>
+    <script src="scripts/validacaoUsuario.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/signup.js"></script>
 
 </body>
 

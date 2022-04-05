@@ -10,7 +10,8 @@ O projeto consiste em um pequeno aplicativo de gerenciamento de tarefas, dentro 
 - [Izabella Leite](https://github.com/izaleite)
 - [Alcilene Reis](https://github.com/alcilene)
 - [Ewerton L. Pereira](https://github.com/ewertonlp)
-
+  <!-- TODO colocar o Clayton -->
+- [Ewerton L. Pereira](https://github.com/ewertonlp)
 
 ## Funcionalidades
 
