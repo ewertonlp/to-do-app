@@ -71,6 +71,8 @@ function cadastroSucesso(nomeUsuario, sobrenomeUsuario, emailUsuario, jsonRecebi
     // Alerta de sucesso
     alert("Usuário cadastrado com sucesso")
 
+    // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;
+    window.location.href = "tarefas.html"
 
 }
 

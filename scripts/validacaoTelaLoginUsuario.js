@@ -55,14 +55,15 @@ btnLogin.addEventListener('click', evento => {
 /*  Ao obter o sucesso, recebe o json (token) do usuário*/
 
 
-function loginSucesso(email, jsonRecebido) {
+function loginSucesso(emailUsuario, jsonRecebido) {
 
 
-    localStorage.setItem("user", JSON.stringify({ email: email, token: jsonRecebido }))
+    localStorage.setItem("user", JSON.stringify({
+        email: emailUsuario,
+        token: jsonRecebido
+    }))
     alert("Login realizado com sucesso")
 
-    // e então redirecionamos para a pagina de tarefas;
-    window.location.href = "tarefas.html"
 
 }
 

@@ -23,7 +23,7 @@ function createAccount() {
 
 
     //  Verificação do sobrenome: Não pode estar vazio e não pode conter números.
-    const sobrenome = getEBI('inputSobrenomeCadastro').value
+    const sobrenome = getEBI('inputSobrenomeCadastro').value.capitalize()
     if (sobrenome === '') {
 
         // Mostrar menagem de erro (Sobrenome)
@@ -31,9 +31,11 @@ function createAccount() {
     }
 
 
+
     // Verificação do e-mail 
     // TODO: Fazer o .toLoweCase para validação do e-mail
     const email = getEBI('inputEmailCadastro').value
+
 
     if (/\S+@\S+\.\S+/.test(email) === false || email === ' ' || email === null || email === undefined) {
 
@@ -41,7 +43,6 @@ function createAccount() {
         mensagemErro.innerHTML += "<label><font color='red'><strong> E-mail:</strong></font> Insira um e-mail válido! <br> <em>Exemplo: algumtexto@algumtexto.com</em> <br></label>"
 
     }
-
 
     // Verificação da senha
     const password = getEBI('inputSenhaCadastro').value
@@ -59,8 +60,7 @@ function createAccount() {
         mensagemErro.innerHTML += "<label><font color='red'><strong> Confirmação de senha::</strong></font> As senhas precisam ser iguais <br></label>"
 
     } else {
-        // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;
-        // window.location.href = "tarefas.html"
+
     }
 
 }
