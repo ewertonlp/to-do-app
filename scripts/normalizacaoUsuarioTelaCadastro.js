@@ -49,7 +49,6 @@ function createAccount() {
 
         // Mostrar menagem de erro (Senha)
         mensagemErro.innerHTML += "<label><font color='red'><strong> Senha:</strong></font> A senha deve conter entre 8 e 12 caracteres! <br></label>"
-
     }
 
     // Verificação de Confirmação de Senha
@@ -58,7 +57,6 @@ function createAccount() {
 
         // Mostrar menagem de erro (Confirmação de Senha)
         mensagemErro.innerHTML += "<label><font color='red'><strong> Confirmação de senha::</strong></font> As senhas precisam ser iguais <br></label>"
-
 
     } else {
         // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;

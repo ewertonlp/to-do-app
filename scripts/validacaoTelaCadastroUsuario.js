@@ -12,8 +12,6 @@ botaoCriarConta.addEventListener('click', evento => {
 
     evento.preventDefault();
 
-    mensagemErro.innerHTML += " ";
-
     //Verifica se todos os campos estão preenchidos
     if (nome.value != "" && sobrenome.value != "" && email.value != "" && senha.value != "" &&
         repetirSenha.value != "") {
