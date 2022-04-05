@@ -43,11 +43,6 @@ function createAccount() {
     alert('Login efetuado com sucesso!')
   }
 
- // Armazenamento de dados no localStorage
-  localStorage.setItem('name', inputNomeCadastro)
-  localStorage.setItem('nickname', inputSobrenomeCadastro)
-  localStorage.setItem('email', inputEmailCadastro)
-  localStorage.setItem('password', inputSenhaCadastro)
 
 //  Redirecionamento de index.html
   window.location.href = 'index.html'
