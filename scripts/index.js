@@ -1,21 +1,71 @@
-function entrar (){
+//Captura as entradas de dados e ações do usuário na página de Login
 
-// Captura as informações (e-mail e senha)
-let email = document.querySelector('#inputEmail').value;
-const emailNormalizado = email.toLowerCase();
-email.innerHTML = emailNormalizado;
+let email = document.getElementById("inputEmail");
+let senha = document.getElementById("inputSenha");
+let btnLogin = document.getElementById('efetuarLogin');
 
-let senha = document.querySelector('#inputPassword').value;
 
-// Utilizando regex .test -> ele retorna true quando está correto a validação
-if ( senha.length >= 8 && senha.length < 12 &&/.com$/.test(email)) {
+btnLogin.addEventListener('click', evento => {
 
-  // Armazenamento de dados no localStorage
-  localStorage.setItem("login",email)
+    evento.preventDefault();
 
-  alert("Login efetuado com sucesso! ")
+    //Verifica se todos os campos estão preenchidos
 
-  //Redirecionamento de tarefas.html
-  window.location.href="tarefas.html"
+    if (email.value != "" && senha.value != "") {
+
+        // configuracao da API, encontrada na tarefa de Logar o usuário.
+
+        let configuracaoRequisicao = {
+            method: 'POST',
+            body: JSON.stringify({
+
+                "email": email.value,
+                "password": senha.value
+
+            }),
+
+            headers: {
+
+                'Content-type': 'application/json'
+            },
+        };
+
+
+        // Chamando   a API
+        fetch("https://ctd-todo-api.herokuapp.com/v1/users/login", configuracaoRequisicao)
+
+            .then((response) => {
+
+                return response.json()
+
+            }).then(function (resposta) {
+                loginSucesso(email.value, resposta.jwt)
+            })
+            .catch(error => {
+                loginErro(error)
+            });
+    } else {
+        alert("Todos os campos devem ser preenchidos para que possa prosseguir")
+    }
+
+
+});
+
+/*  Ao obter o sucesso, recebe o json (token) do usuário*/
+
+
+function loginSucesso(email, jsonRecebido) {
+
+
+    localStorage.setItem("user", JSON.stringify({ email: email, token: jsonRecebido }))
+    alert("Login realizado com sucesso")
+
+    // e então redirecionamos para a pagina de tarefas;
+    window.location.href = "tarefas.html"
+
 }
+
+function loginErro(statusRecebido) {
+    console.log("Erro ao efetuar o login");
+    console.log(statusRecebido)
 }

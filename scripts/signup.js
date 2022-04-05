@@ -1,4 +1,3 @@
-
 //Captura as entradas de dados e ações do usuário na página de cadastro 
 let nome = document.getElementById("inputNomeCadastro");
 let sobrenome = document.getElementById("inputSobrenomeCadastro");
@@ -67,16 +66,16 @@ botaoCriarConta.addEventListener('click', evento => {
 /*  Ao obter o sucesso, recebe o json (token) do usuário*/
 
 
-function cadastroSucesso( nome, sobrenome, email, jsonRecebido) {
+function cadastroSucesso(nome, sobrenome, email, jsonRecebido) {
 
 
-localStorage.setItem("user" , JSON.stringify({ nome: nome, sobrenome: sobrenome, email:email, token: jsonRecebido}))
+    localStorage.setItem("user", JSON.stringify({ nome: nome, sobrenome: sobrenome, email: email, token: jsonRecebido }))
 
-alert("Usuário cadastrado com sucesso")
+    alert("Usuário cadastrado com sucesso")
 
 
-  // e então redirecionamos para a pagina de tarefas;
-  window.location.href = "tarefas.html"
+    // e então redirecionamos para a pagina de tarefas;
+    window.location.href = "tarefas.html"
 
 }
 

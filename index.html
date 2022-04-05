@@ -9,7 +9,7 @@
 
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
   <link rel="stylesheet" href="styles/acesso.css">
-
+ 
 </head>
 
 <body>
@@ -20,9 +20,9 @@
   <div class="right">
     <form>
       <div class="form-header">
-        <p>To-Do App</p>
+        <p>TO-DO APP</p>
       </div>
-      <h1>Acessar</h1>
+      <h1>Login</h1>
 
 
       <label>
@@ -31,10 +31,10 @@
       </label>
       <label>
         Senha:
-        <input id="inputPassword" type="password">
+        <input id="inputSenha" type="password">
       </label>
 
-      <button type="button" onclick="entrar()">Acessar</button>
+      <button type="button" onclick="entrar()" id="efetuarLogin">Acessar</button>
 
     </form>
     <div class="ingressar">
@@ -42,11 +42,9 @@
     </div>
   </div>
 
-  <!-- ---------------------- lógica aplicada no registro -------------------- -->
 
-
-
-
+  <script src="./scripts/validacaoUsuarioLogin.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

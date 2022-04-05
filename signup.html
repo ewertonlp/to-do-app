@@ -10,6 +10,10 @@
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
   <link rel="stylesheet" href="styles/acesso.css">
 
+  <!-- ---------------------- lógica aplicada no registro -------------------- -->
+ 
+ 
+
 </head>
 
 <body>
@@ -20,13 +24,13 @@
   <div class="right">
     <form>
       <div class="form-header">
-        <p>To-Do App</p>
+        <p>TO-DO APP</p>
       </div>
+      <h2>Cadastre-se</h2>
 
       <label>
         Nome:
-        <input type="text" id="inputNomeCadastro" required="required">
-
+        <input type="text" id="inputNomeCadastro">
       </label>
       <label>
         Sobrenome:
@@ -34,27 +38,28 @@
       </label>
       <label>
         Email:
-        <input type="text" id="inputEmailCadastro" required="required">
+        <input type="text" id="inputEmailCadastro">
       </label>
       <label>
         Senha:
-        <input type="password" id="inputSenhaCadastro" required="required">
+        <input type="password" id="inputSenhaCadastro">
       </label>
       <label>
         Repetir senha:
-        <input type="password" id="inputRepetirSenhaCadastro" required="required">
+        <input type="password" id="inputRepetirSenhaCadastro">
       </label>
 
-      <button id="botaoCriarContaCadastro" type="button" onclick="createAccount()">Criar conta</button>
+      <button type="button" onclick="createAccount()" id="botaoCriarContaCadastro">Criar conta</button>
 
     </form>
     <div class="ingressar">
       <a href="index.html">Já possui conta? Acesse aqui</a>
     </div>
+  </div>
 
-    <!-- ---------------------- lógica aplicada no registro -------------------- -->
 
-
+  <script src="/scripts/validacaoUsuarioCadastro.js" ></script>
+  <script src="/scripts/signup.js"></script>
 </body>
 
 </html>

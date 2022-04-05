@@ -19,6 +19,7 @@ body {
 
 button {
   border: none;
-  border-radius: 3px;
+  border-radius: 25px;
   cursor: pointer;
+  color: #fff;
 }
