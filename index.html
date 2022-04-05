@@ -9,7 +9,7 @@
 
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
   <link rel="stylesheet" href="styles/acesso.css">
- 
+
 </head>
 
 <body>
@@ -38,13 +38,17 @@
 
     </form>
     <div class="ingressar">
-      <a href="signup.html">Não possui conta? Crie agora mesmo</a>
+      <a href="telaCadastro.html">Não possui conta? Crie agora mesmo</a>
     </div>
   </div>
 
+  <!-- ---------------------- lógica aplicada no index -------------------- -->
 
-  <script src="./scripts/validacaoUsuarioLogin.js"></script>
-  <script src="./scripts/index.js"></script>
+  <!-- Normalização para Email e Senha da tela Login -->
+  <script src="./scripts/normalizacaoUsuarioTelaLogin.js"></script>
+
+  <!-- Validação para Email e Senha da tela Login -->
+  <script src="./scripts/validacaoTelaLoginUsuario.js"></script>
 </body>
 
 </html>

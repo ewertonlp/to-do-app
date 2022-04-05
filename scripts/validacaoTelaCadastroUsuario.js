@@ -1,3 +1,5 @@
+// ! Validação da tela de Cadastro de usuário 
+
 //Captura as entradas de dados e ações do usuário na página de cadastro 
 let nome = document.getElementById("inputNomeCadastro");
 let sobrenome = document.getElementById("inputSobrenomeCadastro");
@@ -11,13 +13,11 @@ botaoCriarConta.addEventListener('click', evento => {
     evento.preventDefault();
 
     //Verifica se todos os campos estão preenchidos
-
     if (nome.value != "" && sobrenome.value != "" && email.value != "" && senha.value != "" &&
         repetirSenha.value != "") {
 
         // configuracao da API, encontrada na tarefa de criar Usuario.
-
-        let configuracaoRequisicao = {
+        let configuracaoRequisicaoCadastro = {
             method: 'POST',
             body: JSON.stringify({
 
@@ -36,19 +36,12 @@ botaoCriarConta.addEventListener('click', evento => {
 
 
         // Chamando   a API
-
-        fetch("https://ctd-todo-api.herokuapp.com/v1/users", configuracaoRequisicao)
+        fetch("https://ctd-todo-api.herokuapp.com/v1/users", configuracaoRequisicaoCadastro)
 
             .then((response) => {
-
-
-                // verifica se o status se é 201, que é o status ok. Se não entra no catch.
-                if (response.status == 201) {
-                    return response.json()
-                }
-                /* Se o código for diferente de sucesso (201), lança um throw para que a execução caia no Catch() */
-                throw response;
-            }).then(function (resposta) {
+                return response.json();
+            })
+            .then(function (resposta) {
                 cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwt)
             })
             .catch(error => {
@@ -57,31 +50,38 @@ botaoCriarConta.addEventListener('click', evento => {
 
     } else {
 
-        alert("Todos os campos devem ser preenchidos para que possa prosseguir")
+        alert("Preencha todos os campos")
+
     }
 
 
 });
 
+
+
+
+
+
 /*  Ao obter o sucesso, recebe o json (token) do usuário*/
+function cadastroSucesso(nomeUsuario, sobrenomeUsuario, emailUsuario, jsonRecebido) {
 
+    // Atribui os dados ao localStorage com o Nome do User, Sobrenome e o Token
+    localStorage.setItem("user", JSON.stringify({
+        nome: nomeUsuario,
+        sobrenome: sobrenomeUsuario,
+        email: emailUsuario,
+        token: jsonRecebido
+    }))
 
-function cadastroSucesso(nome, sobrenome, email, jsonRecebido) {
-
-
-    localStorage.setItem("user", JSON.stringify({ nome: nome, sobrenome: sobrenome, email: email, token: jsonRecebido }))
-
+    // Alerta de sucesso
     alert("Usuário cadastrado com sucesso")
 
 
-    // e então redirecionamos para a pagina de tarefas;
-    window.location.href = "tarefas.html"
-
 }
 
+// Caso ocorra algum erro, mostra o erro no console
 function cadastroErro(statusRecebido) {
 
     console.log("Erro ao cadastrar");
-
     console.log(statusRecebido)
 }

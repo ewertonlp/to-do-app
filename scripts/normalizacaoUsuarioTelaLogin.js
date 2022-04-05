@@ -1,4 +1,4 @@
-// Arquivo para normalização da tela de Login
+// ! Normalização da tela login e senha
 
 function entrar() {
 

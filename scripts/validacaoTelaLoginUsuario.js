@@ -1,3 +1,4 @@
+// ! Validação do formulário de login (Tela Login)
 //Captura as entradas de dados e ações do usuário na página de Login
 
 let email = document.getElementById("inputEmail");

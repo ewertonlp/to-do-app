@@ -10,9 +10,8 @@
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
   <link rel="stylesheet" href="styles/acesso.css">
 
-  <!-- ---------------------- lógica aplicada no registro -------------------- -->
- 
- 
+
+
 
 </head>
 
@@ -51,15 +50,24 @@
 
       <button type="button" onclick="createAccount()" id="botaoCriarContaCadastro">Criar conta</button>
 
+      <div id="mensagemErro">
+      </div>
+
+      <div class="ingressar">
+        <a href="index.html">Já possui conta? Acesse aqui</a>
+      </div>
+      
     </form>
-    <div class="ingressar">
-      <a href="index.html">Já possui conta? Acesse aqui</a>
-    </div>
+  
   </div>
 
 
-  <script src="/scripts/validacaoUsuarioCadastro.js" ></script>
-  <script src="/scripts/signup.js"></script>
+  <!-- ---------------------- lógica aplicada no registro -------------------- -->
+  <!-- Normalização da tela Cadastro usuário -->
+  <script src="/scripts/normalizacaoUsuarioTelaCadastro.js"></script>
+
+  <!-- Validação da tela Cadastro usuário -->
+  <script src="/scripts/validacaoTelaCadastroUsuario.js"></script>
 </body>
 
 </html>
