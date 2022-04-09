@@ -4,22 +4,18 @@ body {
   display: flex;
 }
 
-h1, h2 {
-  color: rgb(116, 116, 116);
-  font-weight: 300;
-  margin: .5em 0;
-}
 
 form {
   position: relative;
-  max-width: 30em;
+  max-width: 450px;
+  width: 100%;
   background-color: white;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 2em auto;
+  justify-content: center;
   box-shadow: 10px 10px 20px rgb(230, 230, 230);
-  padding: 2em 3em;
+  padding: 2rem 3rem;
   box-sizing: border-box;
   border-radius: 10px;
 }
@@ -35,44 +31,100 @@ form:after {
   border-radius: 10px 0 0 10px;
 }
 
-
-input {
-  width: 100%;
-  padding: .4em .5em;
-  background-color: var(--app-grey);
-  border: 1px solid var(--app-grey);
-  border-radius: .3em;
-  margin-bottom: .5em;
+.form-header {
+  margin:1rem 0 2rem;
 }
 
-input:focus {
+.form-header h1, h2 {
+  font-size: 2rem;
+  color: rgb(104, 104, 104);
+  font-weight: 400;
+}
+
+.form-control {
+  position: relative;
+  width: 300px;
+  margin-bottom: 1rem;
+}
+
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-width: 180px;
+  padding: .4rem .5rem;
+  border: none;
+  border-bottom: 2px solid rgb(141, 141, 141);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  transition: all .3s ease-out;
+}
+
+.form-input:focus {
   outline: none;
-  border: 1px solid lightgrey;
+  border-bottom: 1px solid rgb(136, 136, 136);
 }
 
-label {
-  width: 100%;
-  font-weight: 300;
-  padding-bottom: 1em;
-  margin-top: 1em;
-  font-size: .8em;
+.form-control label {
+  position: absolute;
+  top: -.5rem;
+  left: 0;
+  margin-top: .9rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  pointer-events: none;
+  transition: all .3s ease-out;
+}
+
+
+.form-control  input:focus + label,
+.form-control  input:valid + label {
+  font-size: .975REM;
+  margin-top: -5%;
+  color: rgb(159, 159, 159); 
+}
+
+.ri-eye-line {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  z-index: 100;
+  color: var(--text-color);
+  visibility: visible;
+  cursor: pointer;
 }
 
 button {
-  width: 80%;
+  width: 90%;
   padding: .5em 3em;
   background: linear-gradient(var(--primary), var(--secondary));
   font-weight: 400;
-  margin-top: 2em;
-  margin-bottom: 1em;
+  margin: 2rem 0 1rem;
   color: white;
-  font-weight: 400;
-  font-size: 1em;
+  font-weight: 600;
+  font-size: 1.125rem;
 }
 
-.form-header {
-  color: grey;
-  font-size: 2em;
+
+
+#msgError {
+  text-align: center;
+  color: #D85A5A;
+  background-color: #e3b2b2;
+  padding: 10px;
+  border-radius: 4px;
+  display: none;
+  margin-bottom: 1.5rem;
+}
+
+#msgSuccess {
+  text-align: center;
+  color: #1d622a;
+  background-color: #a3d1ab;
+  padding: 10px;
+  border-radius: 4px;
+  display: none;
+  margin-bottom: 1.5rem;
 }
 
 .ingressar {

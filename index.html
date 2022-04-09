@@ -8,7 +8,8 @@
   <title>To-Do App</title>
 
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
-  <link rel="stylesheet" href="styles/acesso.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/acesso.css">
 
 </head>
 
@@ -20,35 +21,33 @@
   <div class="right">
     <form>
       <div class="form-header">
-        <p>TO-DO APP</p>
+        <h1>TO-DO APP</h1>
+        <h2>Login</h2>
       </div>
-      <h1>Login</h1>
 
+      <div class="form-control">
+        <input id="inputEmail" class="form-input" type="text" required>
+        <label id="labelEmail"> Email:</label>
+      </div>
+      
+      <div class="form-control">
+        <input id="inputPassword" class="form-input" type="password" required>
+        <label id="labelSenha">Senha:</label>
+        <i class="ri-eye-line"></i>
+      </div>
+    
+      <button type="button" onclick="login()" id="efetuarLogin">ENTRAR</button>
 
-      <label>
-        Email:
-        <input id="inputEmail" type="text">
-      </label>
-      <label>
-        Senha:
-        <input id="inputSenha" type="password">
-      </label>
-
-      <button type="button" onclick="entrar()" id="efetuarLogin">Acessar</button>
-
+      <div class="ingressar">
+        <a href="telaCadastro.html">Não possui conta? Crie agora mesmo</a>
+      </div>
     </form>
-    <div class="ingressar">
-      <a href="telaCadastro.html">Não possui conta? Crie agora mesmo</a>
-    </div>
   </div>
 
   <!-- ---------------------- lógica aplicada no index -------------------- -->
+  <script src="./scripts/login.js"></script>
 
-  <!-- Normalização para Email e Senha da tela Login -->
-  <script src="./scripts/normalizacaoUsuarioTelaLogin.js"></script>
 
-  <!-- Validação para Email e Senha da tela Login -->
-  <script src="./scripts/validacaoTelaLoginUsuario.js"></script>
 </body>
 
 </html>

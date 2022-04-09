@@ -7,69 +7,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do App</title>
 
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
-  <link rel="stylesheet" href="styles/acesso.css">
-
-
-
+  <link rel="stylesheet" href="./styles/acesso.css">
 
 </head>
 
 <body>
-
   <div class="left">
     <img src="./assets/pessoa-signup.png" alt="">
   </div>
   <div class="right">
-    <form>
+    <form id="form-cadastro">
       <div class="form-header">
-        <p>TO-DO APP</p>
+        <h1>TO-DO APP</h1>
+        <h2>Cadastre-se</h2>
       </div>
-      <h2>Cadastre-se</h2>
 
-      <label>
-        Nome:
-        <input type="text" id="inputNomeCadastro" required="required">
-      </label>
-      <label>
-        Sobrenome:
-        <input type="text" id="inputSobrenomeCadastro" required="required">
-      </label>
-      <label>
-        Email:
-        <input type="text" id="inputEmailCadastro" required="required">
-      </label>
-      <label>
-        Senha:
-        <input type="password" id="inputSenhaCadastro" required="required">
-      </label>
-      <label>
-        Repetir senha:
-        <input type="password" id="inputRepetirSenhaCadastro" required="required">
-      </label>
+      <div id="msgError"></div>
+      <div id="msgSuccess"></div>
 
-      <button type="button" onclick="createAccount()" id="botaoCriarContaCadastro">Criar conta</button>
+      
+      <div class="form-control">
+        <input type="text" class="form-input" id="inputNome" required>
+        <label for="inputNome" id="labelNome">Nome:</label>  
+      </div>
+      
+      <div class="form-control">
+        <input type="text" class="form-input" id="inputSobrenome" required>
+        <label for="inputSobrenome" id="labelSobrenome">Sobrenome:</label> 
+      </div>
+      
+
+      <div class="form-control">
+        <input type="email" class="form-input" id="inputEmail" required>
+        <label for="inputEmail" id="labelEmail">Email:</label> 
+      </div>
+
+      <div class="form-control">
+        <input type="password" class="form-input" id="inputSenha" required>
+          <label for="inputSenha" id="labelSenha">Senha:</label>
+          <i id="verSenha" class="ri-eye-line"></i> 
+      </div>
+      
+      <div class="form-control">
+        <input type="password" class="form-input" id="inputRepetirSenha" required>
+        <label for="inputRepetirSenha" id="labelRepetirSenha">Confirme sua Senha:</label>
+        <i id="verConfirmSenha" class="ri-eye-line"></i>
+    
+    </div>
+
+      <button type="button" onclick="createAccount()"  id="btn-cadastro">Criar conta</button>
 
       <div id="mensagemErro">
       </div>
 
       <div class="ingressar">
-        <a href="index.html">Já possui conta? Acesse aqui</a>
+        <a href="index.html">Já possui conta? Faça o Login</a>
       </div>
 
     </form>
-
   </div>
 
 
   <!-- ---------------------- lógica aplicada no registro -------------------- -->
-  <!-- Normalização da tela Cadastro usuário -->
-  <script src="/scripts/normalizacaoUsuarioTelaCadastro.js"></script>
+  <script src="./scripts/cadastro.js"></script>
 
-  <!-- Validação da tela Cadastro usuário -->
-  <script src="/scripts/validacaoTelaCadastroUsuario.js"></script>
-
-  <script src="scripts/test.js"></script>
 </body>
 
 </html>

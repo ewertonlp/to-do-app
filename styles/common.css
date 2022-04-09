@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600&display=swap');
 
 :root {
   --primary: #7898FF;
   --secondary: #8E64C5;
   --app-grey: #F2F2F2;
+  --text-color: rgb(61, 61, 61);
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 body {
@@ -19,7 +20,7 @@ body {
 
 button {
   border: none;
-  border-radius: 25px;
+  border-radius: 5px;
   cursor: pointer;
   color: #fff;
 }
