@@ -102,7 +102,7 @@ btnCadastro.addEventListener('click', (e) => {
 
         // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;
         setTimeout(() => {
-            window.location.href = "tarefas.html"
+            window.location.href = "index.html"
         }, 3000)
     }
 
