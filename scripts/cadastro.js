@@ -64,6 +64,8 @@ btnCadastro.addEventListener('click', (e) => {
                 return response.json();
             })
             .then(function (resposta) {
+
+                console.log(resposta.jwt)
                 cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwt)
             })
             .catch(error => {

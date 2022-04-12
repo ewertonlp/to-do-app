@@ -1,0 +1,24 @@
+@import url('./common.css');
+
+.hero {
+    height: 80vh
+}
+
+.info-container {
+    height: 600px;
+    padding-top: 10rem;
+}
+
+.card {
+    box-shadow: 10px 10px 30px rgba(0,0,0,.1);
+    border: none;
+    transition: all .3s ease;
+}
+
+.card:hover {
+    border: 1px solid rgb(59, 129, 235);
+}
+
+.img-device {
+    width: 100px;
+}
