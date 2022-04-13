@@ -13,44 +13,46 @@ const loginUrl = 'https://ctd-todo-api.herokuapp.com/v1/users/login';
 // Função utilizada ao clicar no botão
 function login() {
 
-    // normalizamos o campo de email, recebendo o que é digitado e armazenamos na variavel email.
+    // normalizamos o campo de email, recebendo o que é digitado e armazenamos na variável email.
     let email = inputEmail.value.toLowerCase();
     inputEmail.value = email;
 
-    // o mesmo é feito para a variavel senha. 
+    // o mesmo é feito para a variável senha. 
     let senha = inputPassword.value
 
 
     // se o email digitado passar pelo teste do regex, o mesmo é armazenado na localStorage.
     if (regexMail.test(email)) {
-        localStorage.setItem('login', JSON.stringify({ email: email }));
+        localStorage.setItem('login', JSON.stringify({
+            email: email
+        }));
 
 
-        // Aqui passamos então um objeto, que receberá a variavel email e senha como valor para os dois campos obrigatórios para nosso body.
+        // Aqui passamos então um objeto, que receberá a variável email e senha como valor para os dois campos obrigatórios para nosso body.
         const data = {
             email: email,
             password: senha,
         };
 
 
-        // neste console log trazemos então para o  data, o email e senha do usuario.
+        // neste console log trazemos então para o  data, o email e senha do usuário.
         console.log(data);
 
-        // criamos uma variavel para armazenar as configuracoes da API e do endpoint , como o seu metodo e o seu header.
+        // criamos uma variável para armazenar as configurações da API e do endpoint , como o seu método e o seu header.
         const settings = {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
             },
 
-            // então chamamos a variavel data que recebeu os valores dos campos, e aplicamos o JSON stringfy para tornar o objeto um JSON.
+            // então chamamos a variável data que recebeu os valores dos campos, e aplicamos o JSON stringfy para tornar o objeto um JSON.
             body:
 
                 JSON.stringify(data),
         };
 
 
-        // passamos então como parametro a variavel que contem a URL, e a variavel que contem as configurações
+        // passamos então como parâmetro a variável que contem a URL, e a variável que contem as configurações
         fetch(loginUrl, settings)
 
             // aqui usamos response para validar se positiva, retornamos a response.json
@@ -65,7 +67,7 @@ function login() {
                 throw response;
             })
 
-            // com a resposta usamos uma simples funcao para armazenar o JWT no localStorage, como é proposto pelo exercicio.
+            // com a resposta usamos uma simples função para armazenar o JWT no localStorage, como é proposto pelo exercício.
 
             .then(function (resposta) {
 
@@ -73,8 +75,6 @@ function login() {
                 console.log(resposta)
                 alert("Login efetuado com sucesso!")
                 loginSucesso(resposta.jwt)
-                // location.href = 'tarefas.html';
-
             })
             .catch(err => {
                 console.log(err);
@@ -100,7 +100,7 @@ function login() {
 }
 
 // ----------- Normalização dos campos Email e Senha ------- //
-inputEmail.addEventListener('keyup', (e) => {
+inputEmail.addEventListener('keyup', (event) => {
 
     if (regexMail.test(inputEmail.value) == false) {
         labelEmail.setAttribute('style', 'color: #D85A5A');
@@ -112,6 +112,8 @@ inputEmail.addEventListener('keyup', (e) => {
         inputEmail.setAttribute('style', 'border-color: #4ECa64');
 
     }
+
+    event.preventDefault();
 });
 
 
