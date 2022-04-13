@@ -25,7 +25,7 @@ const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const msgError = document.querySelector("#msgError");
 const msgSuccess = document.querySelector("#msgSuccess");
 
-const cadastroURL = 'https://ctd-todo-api.herokuapp.com/v1/users/';
+const api = 'https://ctd-todo-api.herokuapp.com/v1/users';
 
 
 
@@ -43,34 +43,45 @@ btnCadastro.addEventListener('click', (e) => {
             sobrenome: sobrenome.value,
             email: email.value,
             password: password.value,
-            passwordConfirmaton: passwordConfirmaton.value
-        }
+            // passwordConfirmaton: passwordConfirmaton.value
+        };
 
         const settings = {
             method: 'POST',
+            body:
+                JSON.stringify({
+                    nome: nome.value,
+                    sobrenome: sobrenome.value,
+                    email: email.value,
+                    password: password.value,
+                }),
             headers: {
-                'content-type': 'application/json',
+                'Content-type': 'application/json',
+
             },
 
-            body:
-
-                JSON.stringify(data),
         };
 
+        console.log(data)
+
         // Chamando   a API
-        fetch(cadastroURL, settings)
+        fetch(api, settings)
 
             .then((response) => {
-                return response.json();
-            })
-            .then(function (resposta) {
 
-                console.log(resposta.jwt)
+                if (response.status == 201) {
+
+                    return response.json();
+                }
+
+                throw response;
+            }).then(function (resposta) {
                 cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwt)
             })
             .catch(error => {
                 cadastroErro(error)
             });
+
 
 
 
@@ -84,15 +95,17 @@ btnCadastro.addEventListener('click', (e) => {
 
 
     /*  Ao obter o sucesso, recebe o json (token) do usuário*/
-    function cadastroSucesso(nomeUsuario, sobrenomeUsuario, emailUsuario, jsonRecebido) {
+    function cadastroSucesso(nome, sobrenome, email, jsonRecebido) {
 
         // Atribui os dados ao localStorage com o Nome do User, Sobrenome e o Token
         localStorage.setItem("user", JSON.stringify({
-            nome: nomeUsuario,
-            sobrenome: sobrenomeUsuario,
-            email: emailUsuario,
+            nome: nome,
+            sobrenome: sobrenome,
+            email: email,
             token: jsonRecebido
+
         }))
+        console.log(jsonRecebido)
 
         // Exibe mensagem de sucesso
         msgSuccess.setAttribute('style', 'display:block');
@@ -100,10 +113,12 @@ btnCadastro.addEventListener('click', (e) => {
         msgError.setAttribute('style', 'display:none')
         msgError.innerHTML = ''
 
+        window.location = "../index.html"
+
         // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;
-        setTimeout(() => {
-            window.location.href = "index.html"
-        }, 3000)
+        // setTimeout(() => {
+        //     window.location.href = "index.html"
+        // }, 3000)
     }
 
 

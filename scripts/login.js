@@ -132,7 +132,7 @@ inputPassword.addEventListener('keyup', () => {
 
 
 // ---------- Lógica para  mostrar e esconder senha ------------- //
-btnVerSenha.addEventListener('click', () => {
+btnVerSenha.addEventListener('click', (e) => {
     let inputPassword = document.querySelector('#inputSenha');
 
     if (inputPassword.getAttribute('type') == 'password') {
