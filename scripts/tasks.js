@@ -8,6 +8,7 @@ const urlGetMe = 'https://ctd-todo-api.herokuapp.com/v1/users/getMe';
 const jwtSessao = localStorage.getItem('jwt');
 
 const tarefasPendentes = querySelector('.tarefas-pendentes');
+const tarefasTerminadas = querySelector('.tarefas-terminadas');
 
 
 
@@ -133,14 +134,15 @@ function listarTarefa() {
                 console.log(task.description)
                 console.log(task.createdAt)
 
-                tarefasPendentes.innerHTML
-                    += `<li class="tarefa">
-                    <div class="not-done"></div>
-                    <div class="descricao">
-                    <p class="nome">${task.description}</p>
-                    <p class="timestamp">${task.createdAt}</p>
-                    </div>
-                    </li>`
+                renderizarTarefa(task);
+                // tarefasPendentes.innerHTML
+                //     += `<li class="tarefa">
+                //     <div class="not-done"></div>
+                //     <div class="descricao">
+                //     <p class="nome">${task.description}</p>
+                //     <p class="timestamp">${task.createdAt}</p>
+                //     </div>
+                //     </li>`
 
             })
         })
@@ -155,6 +157,33 @@ function listarTarefa() {
 }
 
 
+function renderizarTarefa(task) {
+    if (tarefasPendentes.completed == false) {
+        tarefasPendentes.innerHTML +=
+            `<li class="tarefa" >
+                <div class="not-done" id="${task.id}"></div>
+                <div class="descricao">
+                <p class="nome">${task.description}</p>
+                <p class="timestamp"><i class="far fa-calendar-alt"></i> ${task.createdAt}</p>
+                </div>
+                </li>`
+    } else {
+        tarefasTerminadas.innerHTML += `
+                <li class="tarefa">
+                <div class="done"></div>
+                <div class="descricao">
+                <p class="nome">${task.descricao}</p>
+                <div>
+                <button><i id="${task.id}" class="fas fa-undo-alt change"></i></button>
+                <button><i id="${task.id}" class="far fa-trash-alt"></i></button>
+                </div>
+                </div>
+                </li>
+        `
+    }
+}
+
+
 
 // FUNÇÃO PARA CRIAR AS TAREFAS
 const urlCriar = 'https://ctd-todo-api.herokuapp.com/v1/tasks';
@@ -166,7 +195,7 @@ function criarTarefa() {
 
     //o nosso data se encarrega de pegar do input a descrição da tarefa, e inicia-la como completed false,
     const data = {
-        description: novaTarefa.value,
+        description: inputTarefa.value,
         completed: false
     };
     console.log(data);
@@ -187,28 +216,55 @@ function criarTarefa() {
 
     fetch(urlCriar, settings)
 
-        .then(
-            response => {
-                response.json().then(
-                    task => {
-                        console.log(task.description, task.completed);
-                        const dataFormatada = new Date(task.createdAt).toLocaleDateString(
-                            'pt-BR', {
-                            day: '2-digit',
-                            month: '2-digit',
-                            year: 'numeric'
-                        }
+        .then(response => response.json())
 
-                        )
-                        tarefasPendentes.innerHTML = `
-                        <li class="tarefa">
-                            <div class="not-done"></div>
-                            <div class="descricao">
-                                <p class="nome">${task.description}</p>
-                                <p class="timestamp">Criada em: ${dataFormatada}</p>
-                            </div> `
-                    })
-            }
+
+        .then(res => {
+            console.log(res);
+
+            localStorage.setItem("idTarefa", res.id);
+
+            // tarefasPendentes.innerHTML += `
+            //      <li class="tarefa">
+            //          <div class="not-done"></div>
+            //         <div class="descricao">
+            //              <p class="nome">${task.description}</p>
+            //             <p class="timestamp">Criada em: ${dataFormatada}</p>
+            //         </div> `
+
+            listarTarefa()
+
+
+                .catch(err => {
+                    console.log(err);
+                    alert("Falha no login!")
+                });
+
+
+
+            // .then(
+            //     task => {
+            //         console.log(task.description, task.completed);
+
+            //         // localStorage.setItem("idTarefa", res.id);
+
+            //         const dataFormatada = new Date(task.createdAt).toLocaleDateString(
+            //             'pt-BR', {
+            //             day: '2-digit',
+            //             month: '2-digit',
+            //             year: 'numeric'
+            //         }
+
+            //         )
+            //         tarefasPendentes.innerHTML += `
+            //     <li class="tarefa">
+            //         <div class="not-done"></div>
+            //         <div class="descricao">
+            //             <p class="nome">${task.description}</p>
+            //             <p class="timestamp">Criada em: ${dataFormatada}</p>
+            //         </div> `
+            //     })
+        }
         )
 }
 
@@ -228,10 +284,9 @@ window.addEventListener('load', () => {
     } else {
 
         listarTarefa()
-        btnNovaTarefa.addEventListener('click', event => {
-            event.preventDefault()
-            criarTarefa()
-        })
     }
 })
+
+
+
 
