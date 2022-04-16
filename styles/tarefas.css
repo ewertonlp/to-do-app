@@ -124,7 +124,14 @@ a {
   display: flex;
   align-items: center;
   margin-bottom: 1.5em;
+  cursor: pointer;
 }
+
+.tarefa .descricao {
+  cursor: pointer;
+}
+
+
 
 .tarefa .not-done {
   position: relative;
@@ -140,6 +147,12 @@ a {
 .tarefa .not-done:hover {
   background-color: var(--secondary);
 }
+
+.tarefa .not-done.checked {
+  background-color: var(--secondary);
+}
+
+
 
 .tarefa:first-child .not-done::before {
   content: '';
@@ -171,6 +184,11 @@ a {
   background-color: white;
   padding: 1em 2em;
   box-shadow: 2px 2px 5px lightgrey;
+}
+
+
+.tarefa .descricao p.checked {
+  text-decoration: line-through;
 }
 
 .tarefa .nome {
@@ -208,7 +226,7 @@ a {
 }
 
 .tarefas-terminadas i{
-  color: grey;
+  color: rgb(63, 63, 63);
   background-color: rgb(228, 228, 228);
 }
 .tarefas-terminadas button{
@@ -220,7 +238,7 @@ a {
 }
 
 .tarefas-terminadas .tarefa .descricao .nome {
-  color: grey;
+  color: rgb(65, 65, 65);
   text-decoration: line-through;
 }
 
