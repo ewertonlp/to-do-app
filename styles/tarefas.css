@@ -2,7 +2,7 @@
 
 header {
   display: flex;
-  background: linear-gradient(10deg, #c093f8  ,#5e3894);
+  background: linear-gradient(10deg, #c093f8, #5e3894);
   box-shadow: 0px 3px 5px lightgrey;
   padding: 0 3em;
   margin-bottom: 2em;
@@ -76,12 +76,13 @@ a {
 
 .nova-tarefa input:focus {
   outline: none;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid var(--secondary);
 }
 
 .nova-tarefa input::placeholder {
-  color: rgb(197, 197, 197);
+  color: var(--secondary);
   text-indent: .2em;
+  font-style: italic;
 }
 
 .nova-tarefa button {
@@ -96,12 +97,16 @@ a {
 
 .nova-tarefa button:hover {
   opacity: 1;
+
 }
 
 .nova-tarefa button img {
   height: 100%;
   width: 100%;
+}
 
+.nova-tarefa button img:hover {
+  color: var(--secondary);
 }
 
 .not-done {
@@ -139,8 +144,6 @@ a {
 .tarefa .descricao {
   cursor: pointer;
 }
-
-
 
 .tarefa .not-done {
   position: relative;
@@ -201,7 +204,7 @@ a {
 }
 
 .tarefa .nome {
-  color: rgb(95, 95, 95);
+  color: var(--text-color);
 }
 
 .tarefa .timestamp {
@@ -224,6 +227,7 @@ a {
   font-size: 1.1em;
   margin-left: calc(15% - 4em);
   z-index: 20;
+  color: #c093f8;
 }
 
 .tarefas-terminadas {
@@ -262,7 +266,7 @@ button .btnSubmit {
 
 #skeleton p {
   background-color: rgb(214, 214, 214);
-  color:  var(--secondary);
+  color: var(--secondary);
   font-weight: 400;
 }
 
