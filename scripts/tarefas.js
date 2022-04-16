@@ -315,8 +315,9 @@ function retornarTarefaPendente() {
 
     icoUndoTarefa.addEventListener('click', function (ev) {
         const id = ev.target.id;
+        const tarefa = {};
 
-        id.completed = false;
+        tarefa.completed = false;
 
         console.log(id);
 
