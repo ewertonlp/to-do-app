@@ -1,79 +1,61 @@
-// Normalização da tela de Cadastro de usuário
-const form = document.querySelector('#form-cadastro');
-const nome = document.querySelector('#inputNome');
-const labelNome = document.querySelector('#labelNome');
-
-const sobrenome = document.querySelector('#inputSobrenome');
-const labelSobrenome = document.querySelector('#labelSobrenome');
-
-const email = document.querySelector('#inputEmail');
-const labelEmail = document.querySelector('#labelEmail');
-
-const password = document.querySelector('#inputSenha');
-const labelSenha = document.querySelector('#labelSenha');
-
-const passwordConfirmaton = document.querySelector('#inputRepetirSenha');
-const labelRepetirSenha = document.querySelector('#labelRepetirSenha');
-
-
-const btnCadastro = document.querySelector('#btn-cadastro');
-const btnVerSenha = document.querySelector("#verSenha");
-const btnVerConfirmSenha = document.querySelector('#verConfirmSenha');
+//Captura as entradas de dados e ações do usuário na página de cadastro 
+const nome = document.getElementById("inputNome");
+const labelNome = document.getElementById('labelNome');
+const sobrenome = document.getElementById("inputSobrenome");
+const labelSobrenome = document.getElementById('labelSobrenome');
+const email = document.getElementById("inputEmail");
+const labelEmail = document.getElementById('labelEmail');
+const senha = document.getElementById("inputSenha");
+const labelSenha = document.getElementById('labelSenha');
+const repetirSenha = document.getElementById("inputRepetirSenha");
+const labelRepetirSenha = document.getElementById('labelRepetirSenha');
+const botaoCriarConta = document.getElementById("botaoCriarContaCadastro");
 
 const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const btnVerSenha = document.querySelector("#verSenha");
+const btnVerConfirmSenha = document.querySelector("#verConfirmSenha");
 
-const msgError = document.querySelector("#msgError");
-const msgSuccess = document.querySelector("#msgSuccess");
+botaoCriarConta.addEventListener('click', evento => {
 
-const api = 'https://ctd-todo-api.herokuapp.com/v1/users';
+    evento.preventDefault();
 
+    //Verifica se todos os campos estão preenchidos
 
+    if (nome.value != "" && sobrenome.value != "" && email.value != "" && senha.value != "" &&
+        repetirSenha.value != "") {
 
-// Função para Validação dos Inputs
-btnCadastro.addEventListener('click', (e) => {
-    e.preventDefault();
+        // configuracao da API, encontrada na tarefa de criar Usuario.
 
-    if (nome.value != "" && sobrenome.value != "" && email.value != "" && password.value != "" &&
-        passwordConfirmaton.value != "") {
-
-
-        // Criamos objeto para receber as variáveis de cadastro.
-        const data = {
-            nome: nome.value,
-            sobrenome: sobrenome.value,
-            email: email.value,
-            password: password.value,
-            // passwordConfirmaton: passwordConfirmaton.value
-        };
-
-        const settings = {
+        let configuracaoRequisicao = {
             method: 'POST',
-            body:
-                JSON.stringify({
-                    nome: nome.value,
-                    sobrenome: sobrenome.value,
-                    email: email.value,
-                    password: password.value,
-                }),
+            body: JSON.stringify({
+
+                firstName: nome.value,
+                lastName: sobrenome.value,
+                email: email.value,
+                password: senha.value
+
+            }),
+
             headers: {
-                'Content-type': 'application/json',
 
+                'Content-type': 'application/json'
             },
-
         };
 
-        console.log(data)
 
         // Chamando   a API
-        fetch(api, settings)
+
+        fetch("https://ctd-todo-api.herokuapp.com/v1/users", configuracaoRequisicao)
 
             .then((response) => {
 
+
+                // verifica se o status se é 201, que é o status ok. Se não entra no catch.
                 if (response.status == 201) {
-
-                    return response.json();
+                    return response.json()
                 }
-
+                /* Se o código for diferente de sucesso (201), lança um throw para que a execução caia no Catch() */
                 throw response;
             }).then(function (resposta) {
                 cadastroSucesso(nome.value, sobrenome.value, email.value, resposta.jwt)
@@ -82,129 +64,112 @@ btnCadastro.addEventListener('click', (e) => {
                 cadastroErro(error)
             });
 
-
-
-
     } else {
-        // Exibe mensagem quando houver erro nos campos Input
-        msgError.setAttribute('style', 'display:block');
-        msgError.innerHTML = '<strong>Erro ao cadastrar usuário, tente novamente!</strong>'
-        msgSuccess.innerHTML = ''
-        msgSuccess.setAttribute('style', 'display:none')
+
+        alert("Todos os campos devem ser preenchidos para que possa prosseguir")
     }
 
 
-    /*  Ao obter o sucesso, recebe o json (token) do usuário*/
-    function cadastroSucesso(nome, sobrenome, email, jsonRecebido) {
-
-        // Atribui os dados ao localStorage com o Nome do User, Sobrenome e o Token
-        localStorage.setItem("user", JSON.stringify({
-            nome: nome,
-            sobrenome: sobrenome,
-            email: email,
-            token: jsonRecebido
-
-        }))
-        console.log(jsonRecebido)
-
-        // Exibe mensagem de sucesso
-        msgSuccess.setAttribute('style', 'display:block');
-        msgSuccess.innerHTML = '<strong>Usuário cadastrado com sucesso.</strong>'
-        msgError.setAttribute('style', 'display:none')
-        msgError.innerHTML = ''
-
-        window.location = "../index.html"
-
-        // Se todos os campos estiverem OK, então redirecionamos para a pagina de tarefas;
-        // setTimeout(() => {
-        //     window.location.href = "index.html"
-        // }, 3000)
-    }
-
-
-    // Caso ocorra algum erro, mostra o erro no console
-    function cadastroErro(statusRecebido) {
-
-        console.log("Erro ao cadastrar");
-        console.log(statusRecebido)
-    }
 });
 
+/*  Ao obter o sucesso, recebe o json (token) do usuário*/
+
+
+function cadastroSucesso(nome, sobrenome, email, jsonRecebido) {
+
+
+    localStorage.setItem("user", JSON.stringify({ nome: nome, sobrenome: sobrenome, email: email, token: jsonRecebido }))
+
+    alert("Usuário cadastrado com sucesso")
+
+
+    // e então redirecionamos para a pagina de tarefas;
+    window.location.href = "../index.html"
+
+}
+
+function cadastroErro(statusRecebido) {
+
+    console.log("Erro ao cadastrar");
+
+    console.log(statusRecebido);
+    alert("Erro ao cadastrar usuário")
+}
 
 
 
-// ------------ Normalização dos campos Input  ------------------//  
-nome.addEventListener('keyup', () => {
 
-    if (nome.value === "") {
-        console.log(nome)
+// ----------- Normalização dos campos Email e Senha ------- //
+nome.addEventListener('keyup', (event) => {
+
+    if (nome.value.length < 3 || nome.value.length === "") {
         labelNome.setAttribute('style', 'color: #D85A5A');
-        labelNome.innerHTML = '<strong>Nome (Este campo não pode estar vazio)</strong>'
+        labelNome.innerHTML = '<strong>Nome (não pode estar vazio)</strong>'
         nome.setAttribute('style', 'border-color: #D85A5A');
     } else {
         labelNome.setAttribute('style', 'color: #4ECa64');
-        labelNome.innerHTML = 'Nome';
+        labelNome.innerHTML = 'Nome:';
         nome.setAttribute('style', 'border-color: #4ECa64');
-
     }
-});
+})
 
-sobrenome.addEventListener('keyup', () => {
 
-    if (sobrenome.value === "") {
+sobrenome.addEventListener('keyup', (event) => {
+
+    if (sobrenome.value.length < 3 || nome.value.length === "") {
         labelSobrenome.setAttribute('style', 'color: #D85A5A');
-        labelSobrenome.innerHTML = '<strong>Sobrenome (Este campo não pode estar vazio)</strong>'
+        labelSobrenome.innerHTML = '<strong>Sobrenome (não pode estar vazio)</strong>'
         sobrenome.setAttribute('style', 'border-color: #D85A5A');
     } else {
         labelSobrenome.setAttribute('style', 'color: #4ECa64');
         labelSobrenome.innerHTML = 'Sobrenome:';
         sobrenome.setAttribute('style', 'border-color: #4ECa64');
-
     }
-});
+})
 
-email.addEventListener('keyup', () => {
 
-    // let inputEmail = email.value.toLowerCase();
-    // email.value = inputEmail;
 
-    if (regexMail.test(email.value) == false) {
+email.addEventListener('keyup', (event) => {
+
+    if (regexMail.test(inputEmail.value) == false) {
         labelEmail.setAttribute('style', 'color: #D85A5A');
         labelEmail.innerHTML = '<strong>Email (email inválido ou campo vazio)</strong>'
-        email.setAttribute('style', 'border-color: #D85A5A');
+        inputEmail.setAttribute('style', 'border-color: #D85A5A');
     } else {
         labelEmail.setAttribute('style', 'color: #4ECa64');
         labelEmail.innerHTML = 'Email:';
-        email.setAttribute('style', 'border-color: #4ECa64');
+        inputEmail.setAttribute('style', 'border-color: #4ECa64');
 
     }
+
+    event.preventDefault();
 });
 
+senha.addEventListener('keyup', () => {
 
-password.addEventListener('keyup', () => {
-
-    if (password.value.length < 8 || password.value.length > 12 || password === "") {
+    if (senha.value.length < 8 || senha.value.length > 12 || senha === "") {
         labelSenha.setAttribute('style', 'color: #D85A5A');
         labelSenha.innerHTML = '<strong>Senha deve conter entre 8 e 12 caracteres</strong>'
-        password.setAttribute('style', 'border-color: #D85A5A');
+        senha.setAttribute('style', 'border-color: #D85A5A');
     } else {
         labelSenha.setAttribute('style', 'color: #4ECa64');
         labelSenha.innerHTML = 'Senha:';
-        password.setAttribute('style', 'border-color: #4ECa64');
+        senha.setAttribute('style', 'border-color: #4ECa64');
 
     }
 });
 
-passwordConfirmaton.addEventListener('keyup', () => {
 
-    if (passwordConfirmaton.value != password.value || passwordConfirmaton.value == "") {
+repetirSenha.addEventListener('keyup', () => {
+
+    if (repetirSenha.value !== senha.value) {
         labelRepetirSenha.setAttribute('style', 'color: #D85A5A');
-        labelRepetirSenha.innerHTML = '<strong>As senhas não conferem</strong>'
-        passwordConfirmaton.setAttribute('style', 'border-color: #D85A5A');
+        labelRepetirSenha.innerHTML = '<strong>Senhas não conferem</strong>'
+        repetirSenha.setAttribute('style', 'border-color: #D85A5A');
     } else {
         labelRepetirSenha.setAttribute('style', 'color: #4ECa64');
-        labelRepetirSenha.innerHTML = 'Confirme sua Senha:';
-        passwordConfirmaton.setAttribute('style', 'border-color: #4ECa64');
+        labelRepetirSenha.innerHTML = 'Senha:';
+        repetirSenha.setAttribute('style', 'border-color: #4ECa64');
 
     }
 });
@@ -212,21 +177,24 @@ passwordConfirmaton.addEventListener('keyup', () => {
 
 
 // ---------- Lógica para  mostrar e esconder senha ------------- //
-btnVerSenha.addEventListener('click', () => {
-    let inputPassword = document.querySelector('#inputSenha');
+btnVerSenha.addEventListener('click', (e) => {
+    let senha = document.querySelector('#inputSenha');
 
-    if (inputPassword.getAttribute('type') == 'password') {
-        inputPassword.setAttribute('type', 'text')
-    } else {
-        inputPassword.setAttribute('type', 'password')
-    }
-})
 
-btnVerConfirmSenha.addEventListener('click', () => {
-    let inputPassword = document.querySelector('#inputRepetirSenha');
-    if (inputPassword.getAttribute('type') == 'password') {
-        inputPassword.setAttribute('type', 'text')
+    if (senha.getAttribute('type') == 'password') {
+        senha.setAttribute('type', 'text')
     } else {
-        inputPassword.setAttribute('type', 'password')
+        senha.setAttribute('type', 'password')
     }
-})
+});
+
+
+btnVerConfirmSenha.addEventListener('click', (e) => {
+    let confirmSenha = document.querySelector('#inputRepetirSenha');
+
+    if (confirmSenha.getAttribute('type') == 'password') {
+        confirmSenha.setAttribute('type', 'text')
+    } else {
+        confirmSenha.setAttribute('type', 'password')
+    }
+});
