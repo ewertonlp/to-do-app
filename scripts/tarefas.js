@@ -31,6 +31,7 @@ function empty(input) {
 }
 
 
+
 // Efetuar logoff da página de tarefas
 // Pega o botão de finalizar sessão
 const btnFinalizaSessao = getById('closeApp');

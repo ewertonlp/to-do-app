@@ -6,6 +6,7 @@ function mostrarSpinner() {
     // Selecionamos o formulário de registro para poder ocultá-lo durante o carregamento
     const form = document.querySelector("form");
 
+
     // Criamos nosso spinner
     const spinnerContainer = document.createElement("div");
     const spinner = document.createElement("div");
@@ -17,6 +18,7 @@ function mostrarSpinner() {
 
     // Ocultamos o formulário de registro
     form.classList.add("hidden");
+
 
     // Adicionamos o Spinner ao nosso HTML.
     spinnerContainer.appendChild(spinner);
@@ -45,3 +47,49 @@ function ocultarSpinner() {
     return;
 }
 
+
+
+
+
+/* ----------------- SKELETON ------------------------
+ Nossa função receberá dois argumentos:
+ 
+ 1) Em primeiro lugar, o número de skeletons que queremos
+   mostrar;
+  2) Em segundo lugar, o conteiner dentro do qual queremos incluir
+ os skeletons
+  Por exemplo, se queremos mostrar 5 skeletons dentro
+ do seguinte conteiner:
+ 
+   <ul class="tarefas-pendentes"></ul>
+ 
+ ao chamar a função podemos passar os seguintes argumentos:
+ 
+ renderizarSkeletons(5, ".tarefas-pendentes")
+ 
+*/
+function renderizarSkeletons(quantidade, conteiner) {
+    // Selecionamos o conteiner
+    const conteinerTarefas = document.querySelector(conteiner);
+
+    // Criamos um array que terá um lenght igual ao número de
+    //skeletons que queremos renderizar
+    const skeletons = Array.from({ length: quantidade });
+
+    // Iteramos sobre o array acessando cada elemento
+    skeletons.forEach(() => {
+        // Guardamos o HTML de cada skeleton. Adicionamos uma classe com o seletor do conteiner
+        // Isso nos permitirá posteriormente eliminar os skeletons do referido conteiner
+        const template = `
+      <li class="skeleton-conteiner ${conteiner.replace(" .", "", "")}-child"="">
+        <div class="skeleton-card">
+          <p class="skeleton-text"></p>
+          <p class="skeleton-text"></p>
+        </div>
+      </li>
+    `;
+
+        // Inserimos o HTML dentro do conteiner
+        conteinerTarefas.innerHTML += template;
+    });
+}

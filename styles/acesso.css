@@ -2,18 +2,22 @@
 
 body {
   display: flex;
+  background-color: #1d1c32;
 }
 
+h1, h2 {
+  text-align: center;
+}
 
 form {
   position: relative;
   max-width: 450px;
   width: 100%;
   background-color: white;
+  display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-
   padding: 2rem 3rem;
   box-sizing: border-box;
   border-radius: 10px;
@@ -42,7 +46,7 @@ form:after {
 
 .form-control {
   position: relative;
-  width: 300px;
+  width: 100%;
   margin-bottom: 1rem;
 }
 
@@ -78,7 +82,7 @@ form:after {
 
 .form-control input:focus+label,
 .form-control input:valid+label {
-  font-size: .975REM;
+  font-size: .975rem;
   margin-top: -5%;
   color: rgb(159, 159, 159);
 }
@@ -97,23 +101,25 @@ form:after {
 
 
 button {
-  width: 90%;
-  padding: .5em 3em;
+  width: 100%;
+  padding: .5rem;
   background: linear-gradient(var(--primary), var(--secondary));
   font-weight: 400;
-  margin: 2rem 0 1rem;
+  margin: 2rem 1rem;
   color: white;
   font-weight: 600;
   font-size: 1.125rem;
+  transition: all .3s ease;
 }
- h1, h2 {
-   text-align: center;
- }
+
+button:hover{
+  transform: translateY(-5px);
+}
 
 
 #msgError {
   text-align: center;
-  color: #D85A5A;
+  color: #c44141;
   background-color: #e3b2b2;
   padding: 10px;
   border-radius: 4px;
@@ -123,7 +129,7 @@ button {
 
 #msgSuccess {
   text-align: center;
-  color: #1d622a;
+  color: #10541d;
   background-color: #a3d1ab;
   padding: 10px;
   border-radius: 4px;
@@ -158,7 +164,6 @@ button {
   align-items: center;
   justify-content: center;
 }
-
 
 
 

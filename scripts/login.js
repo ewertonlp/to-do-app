@@ -6,6 +6,9 @@ const labelSenha = document.querySelector('#labelSenha');
 const btnVerSenha = document.querySelector("#verSenha");
 const regexMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
+const msgError = document.querySelector('#msgError');
+const msgSuccess = document.querySelector('#msgSuccess');
+
 // Trazer URL base da API com endpoint Login
 const loginUrl = 'https://ctd-todo-api.herokuapp.com/v1/users/login';
 
@@ -73,8 +76,10 @@ function login() {
 
                 // neste console podemos ver como resposta o JWT que é gerado ao logar com sucesso.
                 console.log(resposta)
-                alert("Login efetuado com sucesso!")
-                loginSucesso(resposta.jwt)
+                alert("Login efetuado com sucesso!");
+
+                loginSucesso(resposta.jwt);
+
             })
             .catch(err => {
                 console.log(err);

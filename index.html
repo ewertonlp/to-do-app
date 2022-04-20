@@ -14,11 +14,13 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles/acesso.css">
 
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
   <div class="left">
-    <img src="./assets/pessoa-login.svg" alt="">
+    <img src="./assets/pessoa-login.svg" alt="" class="left-img">
   </div>
 
   <div class="right">
@@ -27,6 +29,9 @@
         <h1>TO-DO APP</h1>
         <h2>Login</h2>
       </div>
+
+      <div id='msgError'></div>
+      <div id='msgSuccess'></div>
 
       <div class="form-control">
         <input id="inputEmail" class="form-input" type="text" required>
