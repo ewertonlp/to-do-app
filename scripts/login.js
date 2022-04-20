@@ -97,6 +97,8 @@ function login() {
         window.location.href = "tarefas.html"
     }
 
+    mostrarSpinner();
+
 }
 
 // ----------- Normalização dos campos Email e Senha ------- //

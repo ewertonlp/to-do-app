@@ -44,13 +44,11 @@ botaoCriarConta.addEventListener('click', evento => {
         };
 
 
-        // Chamando   a API
+        // ------------ Chamando a API ---------------------//
 
         fetch("https://ctd-todo-api.herokuapp.com/v1/users", configuracaoRequisicao)
 
             .then((response) => {
-
-
                 // verifica se o status se é 201, que é o status ok. Se não entra no catch.
                 if (response.status == 201) {
                     return response.json()
@@ -69,19 +67,15 @@ botaoCriarConta.addEventListener('click', evento => {
         alert("Todos os campos devem ser preenchidos para que possa prosseguir")
     }
 
-
+    mostrarSpinner();
 });
 
 /*  Ao obter o sucesso, recebe o json (token) do usuário*/
-
-
 function cadastroSucesso(nome, sobrenome, email, jsonRecebido) {
-
 
     localStorage.setItem("user", JSON.stringify({ nome: nome, sobrenome: sobrenome, email: email, token: jsonRecebido }))
 
     alert("Usuário cadastrado com sucesso")
-
 
     // e então redirecionamos para a pagina de tarefas;
     window.location.href = "../index.html"

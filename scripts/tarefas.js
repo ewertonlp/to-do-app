@@ -9,11 +9,6 @@ const nomeUsuario = querySelector('.user-info p');
 //links de integração com API
 const urlAPI = 'https://ctd-todo-api.herokuapp.com/v1/';
 
-/* 'https://ctd-todo-api.herokuapp.com/v1/users/getMe';
-'https://ctd-todo-api.herokuapp.com/v1/tasks';
-'https://ctd-todo-api.herokuapp.com/v1/tasks' */
-
-
 //JWT que identifica o usuário do login
 const jwtSessao = localStorage.getItem('jwt');
 console.log(jwtSessao);
@@ -37,7 +32,7 @@ function empty(input) {
 
 
 // Efetuar logoff da página de tarefas
-//Pega o botão de finalizar sessão
+// Pega o botão de finalizar sessão
 const btnFinalizaSessao = getById('closeApp');
 //Verifica se o usuáio deseja realmente finalizar a sessão e apaga o jwt por segurança
 btnFinalizaSessao.addEventListener('click', function () {
@@ -49,20 +44,10 @@ btnFinalizaSessao.addEventListener('click', function () {
 })
 
 
+// FUNÇÃO QUE RENDERIZA A PÁGINA E INSERE O NOME DO USUÁRIO NO HEADER DA PÁGINA
 window.addEventListener('load', function (evento) {
 
     evento.preventDefault();
-
-    // const myHeaders = new Headers();
-
-    // myHeaders.append('Content-Type', 'application/json');
-    // myHeaders.append('Authorization', jwtSessao);
-
-    // const requestOptions = {
-    //     method: 'GET',
-    //     headers: myHeaders,
-    //     redirect: 'follow'
-    // }
 
     const requestOptions = {
         method: 'GET',
@@ -70,7 +55,6 @@ window.addEventListener('load', function (evento) {
             'content-type': 'application/json',
             authorization: jwtSessao
         },
-        // redirect: 'follow'
     }
 
     fetch(`${urlAPI}users/getMe`, requestOptions)
@@ -78,7 +62,6 @@ window.addEventListener('load', function (evento) {
             if (!response.ok) {
                 console.log(response);
                 throw response;
-                // throw new Error(`Error! status: ${response.status}`);
             } else {
                 return response.json();
             }
@@ -97,7 +80,6 @@ window.addEventListener('load', function (evento) {
 })
 
 // FUNÇÃO PARA LISTAR AS TAREFAS
-
 function listarTarefa() {
 
     let skeletonRef = document.getElementById('skeleton');
@@ -144,7 +126,6 @@ function listarTarefa() {
 }
 
 // FUNÇÃO PARA RENDERIZAR TAREFAS
-
 function renderizarTarefas(listaTarefas) {
 
     console.log(listaTarefas);
@@ -155,12 +136,11 @@ function renderizarTarefas(listaTarefas) {
 
     listaTarefas.forEach(tarefa => {
 
-
         let data = new Date(tarefa.createdAt);
 
         if (!tarefa.completed) {
             tarefasPendentes.innerHTML += `<li class="tarefa">
-            <div class="not-done toggle" id="${tarefa.id}"></div>
+            <div class="not-done toggle" id="${tarefa.id}"><i class="fa fa-solid fa-check"></i></div>
             <div class="descricao">
                 <p class="nome">${tarefa.description}</p>
                 <p class="timestamp"><i class="far fa-calendar-alt"></i> ${data.toLocaleString()}</p>
@@ -185,7 +165,6 @@ function renderizarTarefas(listaTarefas) {
 
 
 // FUNÇÃO PARA CRIAR AS TAREFAS
-
 const inputTarefa = document.getElementById('novaTarefa');
 const btnNovaTarefa = querySelector('.nova-tarefa button');
 
@@ -200,7 +179,6 @@ function criarTarefa() {
 
     console.log(data);
 
-
     const settings = {
 
         method: 'POST',
@@ -211,7 +189,6 @@ function criarTarefa() {
 
         body: JSON.stringify(data)
     }
-
 
 
     fetch(`${urlAPI}tasks`, settings)
@@ -232,13 +209,11 @@ function criarTarefa() {
 btnNovaTarefa.addEventListener('click', function (ev) {
 
     ev.preventDefault();
-
     criarTarefa();
 
 })
 
 // FUNCAO TOGGLE ESTADO
-
 function marcaTarefaCompleta() {
 
     const icoMudaEstado = document.querySelectorAll('.toggle');
@@ -280,7 +255,6 @@ function marcaTarefaCompleta() {
 
 
 // FUNCAO EXCLUIR TAREFA CONCLUIDA
-
 function excluirTarefa() {
 
     const icoExcluirTarefa = document.querySelector('.fa-trash-alt');
@@ -309,7 +283,6 @@ function excluirTarefa() {
 
 
 // FUNÇÃO PARA RETORNAR A TAREFA PARA O ESTADO PENDENTE
-
 function retornarTarefaPendente() {
     const icoUndoTarefa = document.querySelector('.fa-undo-alt');
 
@@ -340,7 +313,6 @@ function retornarTarefaPendente() {
             })
 
             .catch(error => console.error(error));
-
     })
 
 }
@@ -354,9 +326,5 @@ window.addEventListener('load', () => {
     } else {
 
         listarTarefa()
-        // btnNovaTarefa.addEventListener('click', event => {
-        //     event.preventDefault()
-        //     criarTarefa()
-        // })
     }
 })
